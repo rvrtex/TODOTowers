@@ -1,0 +1,22 @@
+﻿<viewdata model="MJohnsonTODO.Model.TODOListElement"/>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.0.min.js" />
+<script type="text/javascript" src="/Content/Scripts/TODOJavaScript.js" />
+
+<!--${Model.getMyId()}-->
+<Form model="MJohnsonTODO.EndPoints.NewEditInputModel" id="edit-form">
+  <fieldset>
+  <input type="hidden" name ="myID" value ="${Model.getMyId()}" model="MJohnsonTODO.EndPoints.NewEditInputModel"></input>
+  <label>Name Of Item</label>
+  <input id="title"
+         type="text"
+         name="Title"
+         model="MJohnsonTODO.EndPoints.NewEditInputModel"
+         value="${Model.Title}" />
+
+  <label>Description/Item Details</label>
+  <textarea id="details" name="Details" rows="3" cols="30"  model="MJohnsonTODO.EndPoints.NewEditInputModel">${Model.Details}</textarea>
+  <input type="submit" />
+    
+  </fieldset>
+</Form>
