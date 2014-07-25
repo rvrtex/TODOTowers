@@ -21,11 +21,21 @@
     background-size: 100% 50px;
 }
 
+.TDList{
+    margin-bottom:20px;
+    margin-top:-20px;
+}
+
 .AddElement {
     width: 300px;
     float:left;
 }
 
 .title{
-    margin-bottom:-33px;
+    margin-top:-38px;
+
+}
+
+ul{
+    list-style:lower-greek;
 }

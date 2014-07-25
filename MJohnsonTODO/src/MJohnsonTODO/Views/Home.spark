@@ -31,18 +31,24 @@
     </Form>
   </div>
   <div class="ElementWrapper">
-    <p class="">
+    <p class="title">
       <h1>${Model.WelcomeMessage}</h1>
     </p>
+    <ul>
     <div class="TDList" each="var todo in Model.getElementList()">
       <if condition = "todo.Value.IsDone == false">
-        <input type="hidden" id ="myID" value ="${todo.Value.getMyId()}" ></input>
-        <button name ="isDone" id="IsDoneCheckBox">Delete Item</button>
-
+        <li id="">
+        <!--<input type="hidden" id ="myID" value ="${todo.Value.getMyId()}" ></input>-->
+        <!--<button name ="isDone" class="DeleteButton" >Delete Item</button>-->
         <label>${todo.Value.getMyId()}</label>
         <Label> ${todo.Value.Title} </Label>
         <Label> ${todo.Value.Details}</Label>
-        ${this.LinkTo(new NewTODOElementInputModel{ID = todo.Value.getMyId()}).Text("edit")}
+          ${this.LinkTo(new NewTODOElementInputModel{ID = todo.Value.getMyId()}).Text("edit")}
+          ${this.LinkTo(new NewDeleteItemInputModel{ID = todo.Value.getMyId()}).Text("delete")}
+
+        </li>
       </if>
     </div>
+    </ul>
+
   </div>

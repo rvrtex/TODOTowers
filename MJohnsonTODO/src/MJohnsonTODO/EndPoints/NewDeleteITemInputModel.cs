@@ -8,6 +8,6 @@ namespace MJohnsonTODO.EndPoints
     public class NewDeleteItemInputModel
     {
         
-        public int myID { get; set; }
+        public int ID { get; set; }
     }
 }

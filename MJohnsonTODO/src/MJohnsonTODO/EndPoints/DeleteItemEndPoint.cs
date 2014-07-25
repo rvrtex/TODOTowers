@@ -18,20 +18,21 @@ namespace MJohnsonTODO.EndPoints
         {
             _ss = ss;
         }
-        public AjaxContinuation post_delete_element(NewDeleteItemInputModel input)
+        public FubuContinuation get_delete_element_ID(NewDeleteItemInputModel input)
         {
             TODOList tempList = _ss.Get<TODOList>("_theList");
             SetIsDoneOnElement(input, tempList);            
             _ss.Set<TODOList>("_theList", tempList);
-            return AjaxContinuation.Successful();
+            return FubuContinuation.RedirectTo<HomeEndpoint>(x => x.Index(), "GET");
+           // return AjaxContinuation.Successful();
            
         }
 
         public static void SetIsDoneOnElement(NewDeleteItemInputModel input, TODOList tempList)
         {
-            TODOListElement tempListElement = tempList.getElement(input.myID);
+            TODOListElement tempListElement = tempList.getElement(input.ID);
             tempListElement.IsDone = true;
-            tempList.setElement(input.myID, tempListElement);
+            tempList.setElement(input.ID, tempListElement);
         }
     }
 }

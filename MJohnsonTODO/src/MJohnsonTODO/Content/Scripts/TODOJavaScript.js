@@ -30,7 +30,7 @@ $(function () {
 
 
 $(function () {
-    $("#IsDoneCheckBox").click(function (e) {
+    $(".DeleteButton").click(function (e) {
         e.preventDefault();
 
         var id = $("#myID").val(),
