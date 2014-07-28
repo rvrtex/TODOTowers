@@ -38,7 +38,7 @@ namespace MJohnsonTODO.EndPoints
             return FubuContinuation.RedirectTo<HomeEndpoint>(x => x.Index(), "GET");
         }
 
-        private static TODOListElement EditElementOfList(NewEditInputModel input, TODOList tempList)
+        public static TODOListElement EditElementOfList(NewEditInputModel input, TODOList tempList)
         {
             TODOListElement tempListElement = tempList.getElement(input.myID);
             tempListElement.Details = input.Details;

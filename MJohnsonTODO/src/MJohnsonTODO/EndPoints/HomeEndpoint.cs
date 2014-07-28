@@ -23,10 +23,14 @@ namespace MJohnsonTODO.EndPoints
 
         public FubuContinuation post_save_todo(NewTodoInputModel input)
         {
+           
             TODOList tempList = _ss.Get<TODOList>("_theList");
-           // HttpContext.Current.Session write test for this to see why it is not a good as ISessionState
-            tempList.AddElement(input.Title, input.Details);
-            _ss.Set<TODOList>("_theList", tempList);
+            //if (tempList.NumberToDisplay() <= 9)
+            //{
+                // HttpContext.Current.Session write test for this to see why it is not a good as ISessionState
+                tempList.AddElement(input.Title, input.Details);
+                _ss.Set<TODOList>("_theList", tempList);
+           // }
             return FubuContinuation.RedirectTo<HomeEndpoint>(x => x.Index(), "GET");
           
         }

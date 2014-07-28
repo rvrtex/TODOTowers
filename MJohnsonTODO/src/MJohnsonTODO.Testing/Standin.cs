@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using MJohnsonTODO.Model;
+using MJohnsonTODO.EndPoints;
 
 namespace MJohnsonTODO.Testing
 {
@@ -20,14 +21,38 @@ namespace MJohnsonTODO.Testing
         {
             TODOListElement tempElement = new TODOListElement{Title="Test Temp", Details="Details Temp"};
             testList.AddElement(tempElement);
-            TODOListElement secondTempElement = testList.getElement(tempElement.getMyId());
-            Assert.IsTrue(secondTempElement.Title.Equals(tempElement.Title) && secondTempElement.Details.Equals(tempElement.Details)
-                && secondTempElement.IsDone.Equals(tempElement.IsDone) && secondTempElement.getMyId() == tempElement.getMyId());
+            TODOListElement secondTempElement = testList.getElement(tempElement.getMyId());           
+            Assert.AreEqual(tempElement, secondTempElement);
         }
 
-        public void Removing_Element_From_List_Removes_Element()
+        [Test]
+        public void Setting_Is_Done_On_Element_Works()
         {
+            if (!testList.getElementList().ContainsKey(testListElement.getMyId()))
+            {
+                testList.AddElement(testListElement);
+            }
+              
+            int key = testListElement.getMyId();
+            DeleteItemEndPoint.SetIsDoneOnElement(new NewDeleteItemInputModel { ID = key }, testList);
+            Assert.IsTrue(testList.getElement(key).IsDone == true);
+        }
 
+        [Test]
+        public void Edit_Title_And_Content()
+        {
+            if(!testList.getElementList().ContainsKey(testListElement.getMyId()))
+            {
+                testList.AddElement(testListElement);
+            }
+            int key = testListElement.getMyId();
+            string newDetails = "This is a Change in details";
+            string newTitle = "This is a change in Title";
+
+           testListElement = EditItemEndPoint.EditElementOfList(new NewEditInputModel { myID = testListElement.getMyId(), Details = newDetails ,
+                Title = newTitle},testList);
+
+           Assert.IsTrue(testListElement.Details.Equals(newDetails) && testListElement.Title.Equals(newTitle));
         }
 	}
 }

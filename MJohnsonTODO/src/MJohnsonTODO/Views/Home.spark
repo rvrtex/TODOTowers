@@ -4,14 +4,20 @@
 <link rel="stylesheet" type="text/css" href="/Content/Styles/TODOMasterStyleSheet.css">
   <script type="text/javascript" src="/Content/Scripts/TODOJavaScript.js" />
 
+  <div class="info">
+   
+    <label> 1) Click on list title to toggle all details open and close</label>
+    <label> 2) Click on item title to toggle indiviual details</label>
+    <label> 3) Adding an item resets the details toggle</label>
 
+  </div>
 
-  <div class="AddElement">
+  <div class="ElementForm">
     <Form model="MJohnsonTODO.EndPoints.NewTodoInputModel" id="todo-form">
       <fieldset>
         <legend>Add New Item</legend>
         <p>
-
+          <input id="numberInListToDisplay" type="hidden" value="${Model.NumberToDisplay()}"></input>
           <label>Name Of Item</label>
           <input id="title"
                  type="text"
@@ -21,7 +27,7 @@
         </p>
         <p>
           <label>Description/Item Details</label>
-          <textarea id="details" name="Details" rows="3" cols="30" placeholder="Your Text Here" model="MJohnsonTODO.EndPoints.NewTodoInputModel"></textarea>
+          <textarea id="details" name="Details" rows="2" cols="27" placeholder="Your Text Here" model="MJohnsonTODO.EndPoints.NewTodoInputModel"></textarea>
         </p>
         <p>
           <input type="reset" />
@@ -31,24 +37,28 @@
     </Form>
   </div>
   <div class="ElementWrapper">
-    <p class="title">
-      <h1>${Model.WelcomeMessage}</h1>
+    <p class="title dropdownAll">
+      <label class="title" >
+        ${Model.WelcomeMessage}
+      </label>
+
     </p>
     <ul>
-    <div class="TDList" each="var todo in Model.getElementList()">
-      <if condition = "todo.Value.IsDone == false">
-        <li id="">
-        <!--<input type="hidden" id ="myID" value ="${todo.Value.getMyId()}" ></input>-->
-        <!--<button name ="isDone" class="DeleteButton" >Delete Item</button>-->
-        <label>${todo.Value.getMyId()}</label>
-        <Label> ${todo.Value.Title} </Label>
-        <Label> ${todo.Value.Details}</Label>
-          ${this.LinkTo(new NewTODOElementInputModel{ID = todo.Value.getMyId()}).Text("edit")}
-          ${this.LinkTo(new NewDeleteItemInputModel{ID = todo.Value.getMyId()}).Text("delete")}
+      <div class="TDList" each="var todo in Model.getElementList()">
+        <if condition = "todo.Value.IsDone == false">
+          <li id="" >
+            <div class="dropdown">
+              <Label > ${todo.Value.Title} </Label>
+            </div>
+            <div class="dropdownwrap">
+              <Label> ${todo.Value.Details}</Label>
+              ${this.LinkTo(new NewTODOElementInputModel{ID = todo.Value.getMyId()}).Text("edit")}
+              ${this.LinkTo(new NewDeleteItemInputModel{ID = todo.Value.getMyId()}).Text("delete")}
+            </div>
 
-        </li>
-      </if>
-    </div>
+          </li>
+        </if>
+      </div>
     </ul>
 
   </div>

@@ -40,6 +40,17 @@ namespace MJohnsonTODO
         {
             return ElementsTODO;
         }
-       
+       public int NumberToDisplay()
+        {
+            int count = 0;
+            foreach (var todo in ElementsTODO)
+            {
+                if(!todo.Value.IsDone)
+                {
+                    count++;
+                }
+            }
+            return count;
+        }
     }
 }

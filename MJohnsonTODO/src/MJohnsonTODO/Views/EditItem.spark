@@ -2,21 +2,30 @@
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.0.min.js" />
 <script type="text/javascript" src="/Content/Scripts/TODOJavaScript.js" />
+<link rel="stylesheet" type="text/css" href="/Content/Styles/TODOMasterStyleSheet.css">
 
-<!--${Model.getMyId()}-->
+
+  <!--${Model.getMyId()}-->
+<div class="ElementForm">
 <Form model="MJohnsonTODO.EndPoints.NewEditInputModel" id="edit-form">
   <fieldset>
-  <input type="hidden" name ="myID" value ="${Model.getMyId()}" model="MJohnsonTODO.EndPoints.NewEditInputModel"></input>
-  <label>Name Of Item</label>
-  <input id="title"
-         type="text"
-         name="Title"
-         model="MJohnsonTODO.EndPoints.NewEditInputModel"
-         value="${Model.Title}" />
-
+    <legend>Edit Item</legend>
+    <p>
+      <input type="hidden" name ="myID" value ="${Model.getMyId()}" model="MJohnsonTODO.EndPoints.NewEditInputModel"></input>
+      <label>Name Of Item</label>
+      <input id="title"
+             type="text"
+             name="Title"
+             model="MJohnsonTODO.EndPoints.NewEditInputModel"
+             value="${Model.Title}" />
+    </p>
+    <p>
   <label>Description/Item Details</label>
   <textarea id="details" name="Details" rows="3" cols="30"  model="MJohnsonTODO.EndPoints.NewEditInputModel">${Model.Details}</textarea>
+    </p>
   <input type="submit" />
+    
     
   </fieldset>
 </Form>
+</div>
